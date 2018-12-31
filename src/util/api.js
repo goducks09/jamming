@@ -9,16 +9,14 @@ const Spotify = {
       return userToken;
     } else if(window.location.href.includes('access_token=') && window.location.href.includes('expires_in=')) {
       const url = window.location.href;
-      const tokenExpiration = url.match(/expires_in=([^&]*)/);
-      userToken = url.match(/access_token=([^&]*)/);
+      const tokenExpiration = url.match(/expires_in=([^&]*)/)[1];
+      userToken = url.match(/access_token=([^&]*)/)[1];
       
       window.setTimeout(() => userToken = '', tokenExpiration * 1000);
       window.history.pushState('Access Token', null, '/');
     } else {
       window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
-    }
-    
-    console.log(userToken);
+    };
   },
   
   search(input, type) {
@@ -47,7 +45,7 @@ const Spotify = {
           results.albums = jsonResponse.albums.items.map(item => {
             return {
               albumName: item.name,
-              artistName: item.artists.name,
+              artistName: item.artists.map(artist => artist.name).join(', '),
               spotifyId: item.id
           }});
           
@@ -61,13 +59,13 @@ const Spotify = {
           results.tracks = jsonResponse.tracks.items.map(item => {
             return {
               albumName: item.album.name,
-              artistName: item.artists.name,
+              artistName: item.artists.map(artist => artist.name).join(', '),
               spotifyId: item.id,
               trackName: item.name
             }
           });
           
-          return results;
+          console.log(results);
         }
     );
   }
