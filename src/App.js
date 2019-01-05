@@ -36,7 +36,6 @@ class App extends Component {
     this.setState({
       playlist: [...this.state.playlist, track]
     });
-    console.log(this.state);
   }
   
   render() {
