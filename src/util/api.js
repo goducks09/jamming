@@ -66,7 +66,7 @@ const Spotify = {
             }
           });
           
-          return (results);
+          return results;
         }
     );
   }

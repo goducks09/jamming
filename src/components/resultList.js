@@ -5,24 +5,33 @@ import Track from './tracks';
 
 class ResultList extends Component {
   render () {
+    if (this.props.tracks) {
+      return (
+        <div className='tracks'>
+          {
+            this.props.tracks.map(track => {
+              return <Track key={track.spotifyId} track={track} />
+            })
+          }
+        </div>
+      );
+    }
+    
     return (
-      <div className="SearchResults">
-        <h2>Results</h2>
         <div className="TrackList">
           <div className='albums'>
             <h3>Albums</h3>
-            {this.state.results.albums.map(album => return <Album key={album.spotifyId} album={album} />)}
+            {this.props.results.albums.map(album => <Album key={album.spotifyId} album={album} />)}  
           </div>
           <div className='artists'>
             <h3>Artists</h3>
-            {this.state.results.artists.map(artist => return <Atrtist key={artist.spotifyId} artist={artist} />)}
+            {this.props.results.artists.map(artist => <Artist key={artist.spotifyId} artist={artist} />)}
           </div>
           <div className='tracks'>
             <h3>Tracks</h3>
-            {this.state.results.tracks.map(track => return <Track key={track.spotifyId} track={track} />)}
+            {this.props.results.tracks.map(track => <Track key={track.spotifyId} track={track} onAdd={this.props.onAdd} />)}
           </div>
         </div>
-      </div>
     );
   }
 }
