@@ -19,6 +19,7 @@ class App extends Component {
     
     this.searchSpotify = this.searchSpotify.bind(this);
     this.addToPlaylist = this.addToPlaylist.bind(this);
+    this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
   }
   
   searchSpotify(input, type) {
@@ -33,9 +34,22 @@ class App extends Component {
     if (this.state.playlist.find(savedTrack => savedTrack.spotifyId === track.spotifyId)) {
       return;
     }
-    this.setState({
-      playlist: [...this.state.playlist, track]
-    });
+    this.setState(prevState => ({
+      playlist: [...prevState.playlist, track]
+    }));
+    console.log(this.state.playlist);
+  }
+  
+  removeFromPlaylist(track) {
+    if (this.state.playlist.find(savedTrack => savedTrack.spotifyId === track.spotifyId)) {
+      let trackIndex = this.state.playlist.indexOf(track);
+      this.setState(prevState => ({
+        playlist: [...prevState.playlist.slice(0, trackIndex), ...prevState.playlist.slice(trackIndex + 1)]
+      }));
+    }
+    return;
+    
+    console.log(this.state.playlist);
   }
   
   render() {
@@ -51,13 +65,14 @@ class App extends Component {
             </div>
             <div className="Playlist">
               <input defaultValue={'New Playlist'} />
-              <Playlist playlistTracks={this.state.playlist} />
+              <Playlist playlistTracks={this.state.playlist} onDelete={this.removeFromPlaylist} />
               <a className="Playlist-save">SAVE TO SPOTIFY</a>
             </div>
           </div>
         </div>
       </div>
     );
+    
   }
 }
 

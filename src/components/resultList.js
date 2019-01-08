@@ -8,31 +8,27 @@ class ResultList extends Component {
     if (this.props.tracks) {
       return (
         <div className='tracks'>
-          {
-            this.props.tracks.map(track => {
-              return <Track key={track.spotifyId} track={track} />
-            })
-          }
+          {this.props.tracks.map(track => <Track key={track.spotifyId} track={track} onDelete={this.props.onDelete} />)}
         </div>
       );
-    }
-    
-    return (
-        <div className="TrackList">
-          <div className='albums'>
-            <h3>Albums</h3>
-            {this.props.results.albums.map(album => <Album key={album.spotifyId} album={album} />)}  
+    } else {
+        return (
+          <div className="TrackList">
+            <div className='albums'>
+              <h3>Albums</h3>
+              {this.props.results.albums.map(album => <Album key={album.spotifyId} album={album} />)}  
+            </div>
+            <div className='artists'>
+              <h3>Artists</h3>
+              {this.props.results.artists.map(artist => <Artist key={artist.spotifyId} artist={artist} />)}
+            </div>
+            <div className='tracks'>
+              <h3>Tracks</h3>
+              {this.props.results.tracks.map(track => <Track key={track.spotifyId} track={track} onAdd={this.props.onAdd} />)}
+            </div>
           </div>
-          <div className='artists'>
-            <h3>Artists</h3>
-            {this.props.results.artists.map(artist => <Artist key={artist.spotifyId} artist={artist} />)}
-          </div>
-          <div className='tracks'>
-            <h3>Tracks</h3>
-            {this.props.results.tracks.map(track => <Track key={track.spotifyId} track={track} onAdd={this.props.onAdd} />)}
-          </div>
-        </div>
-    );
+        );
+      }
   }
 }
 

@@ -4,7 +4,7 @@ import ResultList from './resultList';
 class Playlist extends Component {
   render () {
     return (
-      <ResultList tracks={this.props.playlistTracks} />
+      <ResultList tracks={this.props.playlistTracks} onDelete={this.props.onDelete} />
     );
   }
 }
