@@ -1,3 +1,5 @@
+/* This component returns a list of the search query broken into album, artist, and track categories*/
+
 import React, {Component} from 'react';
 import Album from '../SearchItems/albums';
 import Artist from '../SearchItems/artists';

@@ -1,3 +1,5 @@
+/* This component renders tracks added from the search query to a new playlist */
+
 import React, {Component} from 'react';
 import ResultList from '../ResultList/resultList';
 

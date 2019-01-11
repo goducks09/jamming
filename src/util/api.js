@@ -1,10 +1,10 @@
-/* This object connects to the Spotify API and requests user authorization. Upon authorization, a user can search Spotify and create a playlist to save to their profile. */
+/* This object connects to the Spotify API and requests user authorization. Results are split into album, artist, and track categories. Upon authorization, a user can search Spotify and create a playlist to save to their profile. */
 
 /* Future feature: for user adding entire album, get href or id key from and add secondary fetch to return album tracks. */
 
 let userToken = '';
 const clientId = 'c54e893fe44446a283b3e2f1f747e83c';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://nowplaying.surge.sh';
 const searchUrl = 'https://api.spotify.com/v1/search?q=';
 const userUrl = 'https://api.spotify.com/v1/me';
 
