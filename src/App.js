@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchBar from './components/searchbar';
-import ResultList from './components/resultList';
-import Playlist from './components/playlist';
+import SearchBar from './components/Searchbar/searchbar';
+import ResultList from './components/ResultList/resultList';
+import Playlist from './components/Playlist/playlist';
 import Spotify from './util/api';
 
 class App extends Component {
@@ -14,20 +14,15 @@ class App extends Component {
         artists: [],
         tracks: []
       },
-      playlist: []
+      playlist: [],
+      playlistName: 'New Playlist'
     };
     
-    this.searchSpotify = this.searchSpotify.bind(this);
     this.addToPlaylist = this.addToPlaylist.bind(this);
     this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
-  }
-  
-  searchSpotify(input, type) {
-    Spotify.search(input, type).then(results => {
-      this.setState({
-        results
-      })
-    });
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.searchSpotify = this.searchSpotify.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
   }
   
   addToPlaylist(track) {
@@ -37,7 +32,6 @@ class App extends Component {
     this.setState(prevState => ({
       playlist: [...prevState.playlist, track]
     }));
-    console.log(this.state.playlist);
   }
   
   removeFromPlaylist(track) {
@@ -48,8 +42,30 @@ class App extends Component {
       }));
     }
     return;
+  }
+  
+  savePlaylist () {
+    const trackURIs = this.state.playlist.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+      playlist: [],
+      playlistName: 'New Playlist'
+    });
     
-    console.log(this.state.playlist);
+  }
+  
+  searchSpotify(input, type) {
+    Spotify.search(input, type).then(results => {
+      this.setState({
+        results
+      })
+    });
+  }
+  
+  updatePlaylistName (name) {
+    this.setState({
+      playlistName: name
+    });
   }
   
   render() {
@@ -63,11 +79,7 @@ class App extends Component {
               <h2>Results</h2>
               <ResultList results={this.state.results} onAdd={this.addToPlaylist} />
             </div>
-            <div className="Playlist">
-              <input defaultValue={'New Playlist'} />
-              <Playlist playlistTracks={this.state.playlist} onDelete={this.removeFromPlaylist} />
-              <a className="Playlist-save">SAVE TO SPOTIFY</a>
-            </div>
+              <Playlist playlistTracks={this.state.playlist} playlistName={this.state.playlistName} onDelete={this.removeFromPlaylist} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
         </div>
       </div>

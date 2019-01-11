@@ -18,14 +18,14 @@ class Track extends Component {
   render () {
     let addRemove;
     if (this.props.onAdd) {
-      addRemove = <a className="Track-action" onClick={this.addTrack}>+</a>;
+      addRemove = <a className="Track-action add" onClick={this.addTrack}>+</a>;
     } else {
-      addRemove = <a className="Track-action" onClick={this.removeTrack}>-</a>;
+      addRemove = <a className="Track-action remove" onClick={this.removeTrack}>-</a>;
     }
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{this.props.track.trackName}</h3>
+          <h4>{this.props.track.trackName}</h4>
           <p>{this.props.track.artistName} | {this.props.track.albumName}</p>
         </div>
         {addRemove}

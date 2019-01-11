@@ -5,9 +5,9 @@ class Artist extends Component {
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{this.props.artist.artistName}</h3>
+          <h4>{this.props.artist.artistName}</h4>
         </div>
-        <span><em>Only tracks can be added to a Playlist</em></span>
+        <span><em>Only tracks may be added</em></span>
       </div>
     );
   }

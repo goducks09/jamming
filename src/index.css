@@ -23,7 +23,20 @@ h1 .highlight {
 
 h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.75rem;
+}
+
+.albums h3,
+.artists h3,
+.tracks h3 {
+  color: rgba(256, 256, 256, 0.5);
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+.App-playlist span {
+  font-size: 10px;
+  max-width: 25%;
 }
 
 .App {
@@ -91,7 +104,7 @@ h2 {
 
 .SearchResults {
   width: 50%;
-  height: 950px;
+  max-height: 950px;
   overflow-y: scroll;
   padding: .88rem;
   background-color: rgba(1, 12, 63, 0.7);
@@ -177,8 +190,17 @@ h2 {
   transition: color .25s;
 }
 
+.Track-action.add {
+  color: limegreen;
+}
+
+
 .Track-action:hover {
-  color: rgba(265, 265, 265, .5);
+  color: white;
+}
+
+.Track-action.remove {
+  color: red;
 }
 
 .Track-information {
@@ -186,7 +208,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 72px;
+  min-height: 72px;
 }
 
 .Track-information h3 {

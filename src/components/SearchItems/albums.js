@@ -5,10 +5,10 @@ class Album extends Component {
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{this.props.album.albumName}</h3>
+          <h4>{this.props.album.albumName}</h4>
           <p>{this.props.album.artistName}</p>
         </div>
-        <span><em>Only tracks can be added to a Playlist</em></span>
+        <span><em>Only tracks may be added</em></span>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Album from './albums';
-import Artist from './artists';
-import Track from './tracks';
+import Album from '../SearchItems/albums';
+import Artist from '../SearchItems/artists';
+import Track from '../SearchItems/tracks';
 
 class ResultList extends Component {
   render () {
