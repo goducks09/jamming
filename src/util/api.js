@@ -4,7 +4,7 @@
 
 let userToken = '';
 const clientId = 'c54e893fe44446a283b3e2f1f747e83c';
-const redirectUri = 'https://nowplaying.surge.sh';
+const redirectUri = /*'https://nowplaying.surge.sh'*/'http://localhost:3000/';
 const searchUrl = 'https://api.spotify.com/v1/search?q=';
 const userUrl = 'https://api.spotify.com/v1/me';
 
